@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+USR="devops"
+
+for host in `cat remhosts`
+do
+   echo "#######################"
+   echo "copy file to $host"
+   echo "#######################"
+ 
+   scp vars_websetup.sh $USR@$host:/tmp/
+   ssh $USR@$host sudo /tmp/vars_websetup.sh
+   ssh $USR@host sudo -rf /tmp/vars_websetup.sh
+
+
+done
